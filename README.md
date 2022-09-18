@@ -36,8 +36,7 @@
 ### Association
 
 - belongs_to :user
-
-- has_one :order
+- has_one :purchase_record
 
 
 
@@ -73,7 +72,7 @@
 
 ### Association
 
-- has_one :purchase_record
+- has_one :order
 - belongs_to :item
 - belongs_to :user
 
