@@ -29,7 +29,7 @@
 | item_status_id             | integer   | null: false |
 | shipping_status_id         | integer   | null: false |
 | item_prefecture_id         | integer   | null: false |
-| item_scheduled_delivery_id | string | null: false |
+| item_scheduled_delivery_id | integer | null: false |
 | price                   | integer | null: false |
 | user                 | references | null: false, foreign_key: true |
 
@@ -50,12 +50,12 @@
 | Column                  | Type   | Options     |
 | ----------------------- | ------ | ----------- |
 | postal_code             | string | null: false |
-| prefecture_id              | integer | null: false |
+| item_prefecture_id      | integer | null: false |
 | city                    | string | null: false |
 | building                | string   |           |
 | addresses               | string   | null: false |
 | phone_number            | string   | null: false |
-| purchase_records     | null: false, foreign_key: true | null: false |
+| purchase_record     | null: false, foreign_key: true | null: false |
 
 
 ### Association
