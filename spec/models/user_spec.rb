@@ -109,23 +109,20 @@ require 'rails_helper'
       expect(@user.errors.full_messages).to include("Last name is invalid")
      end
      it 'パスワードが数字のみでは登録できない' do
-      @user.password = '123456abcde'
+      @user.password = '123456'
       @user.valid?
-
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
      it 'パスワードが英語のみでは登録できない' do
-        @user.password = 'abcdef12345'
+        @user.password = 'abcdef'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
      it 'passwordが全角英数では登録できないこと' do
-      password_zen = Faker::Lorem.characters(number: 1, min_numeric:1) 
-      require 'nkf'
-      password_zen.tr("A-Z0-9","Ａ-Ｚ０-９")
-      @user.password = password_zen
+      
+      @user.password = 'AiUeO1234'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password is too short (minimum is 6 characters)", "Password A45a")
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
      end
     end
   end
