@@ -5,9 +5,9 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nick_name          | string | null: false |
-| email              | string | unique: true|
+| email              | string | unique: true, null: false|
 | encrypted_password | string | null: false |
-| last_name          | string   | null: false |
+| last_name          | string | null: false |
 | first_name         | string   | null: false |
 | last_name_kana     | string   | null: false |
 | first_name_kana    | string | null: false |
@@ -36,8 +36,7 @@
 ### Association
 
 - belongs_to :user
-
-- has_one :order
+- has_one :purchase_record
 
 
 
@@ -73,7 +72,7 @@
 
 ### Association
 
-- has_one :purchase_record
+- has_one :order
 - belongs_to :item
 - belongs_to :user
 
