@@ -42,6 +42,11 @@ require 'rails_helper'
        @item.valid?
       expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
      end
+     it '配送料の負担の情報が必須であること' do
+      @item.shipping_status_id = ''
+      @item.valid?
+     expect(@item.errors.full_messages).to include("Shipping status can't be blank")
+     end
      it '価格の情報が必須であること' do
        @item.price = ''
        @item.valid?
@@ -71,6 +76,31 @@ require 'rails_helper'
       @item.user = nil
       @item.valid?
       expect(@item.errors.full_messages).to include('User must exist')
+     end
+     it 'カテゴリーに「---」が選択されている場合は出品できない' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+     end
+     it '商品の状態に「---」が選択されている場合は出品できない' do
+       @item.status_id = 1
+       @item.valid?
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
+     end
+     it '発送元の地域に「---」が選択されている場合は出品できない' do
+       @item.prefecture_id = 0
+       @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+     end
+     it '発送までの日数に「---」が選択されている場合は出品できない' do
+       @item.scheduled_delivery_id = 1
+       @item.valid?
+      expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
+     end
+     it '配送料の負担「---」が選択されている場合は出品できない' do
+      @item.shipping_status_id = 1
+      @item.valid?
+     expect(@item.errors.full_messages).to include("Shipping status must be other than 1")
      end
     end
   end

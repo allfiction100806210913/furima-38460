@@ -7,11 +7,11 @@ FactoryBot.define do
     
     item_name             {Faker::Lorem.sentence}
     item_text             {Faker::Lorem.sentence}
-    category_id              {'1'}
-    status_id                {'1'}
-    shipping_status_id            {'1'}
-    prefecture_id            {'1'}
-    scheduled_delivery_id       {'1'}
+    category_id              {'2'}
+    status_id                {'2'}
+    shipping_status_id            {'2'}
+    prefecture_id            {'2'}
+    scheduled_delivery_id       {'2'}
     price                      {'9999999'}
     association :user
     after(:build) do |item|
