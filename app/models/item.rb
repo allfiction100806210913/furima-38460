@@ -8,8 +8,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_status
   belongs_to_active_hash :scheduled_delivery
   belongs_to_active_hash :prefecture
-
-  
   validates :item_name           , presence: true
   validates :item_text           , presence: true
   validates :category_id           , presence: true
@@ -17,8 +15,7 @@ class Item < ApplicationRecord
   validates :shipping_status_id           , presence: true
   validates :prefecture_id           , presence: true
   validates :scheduled_delivery_id           , presence: true
-  validates :price           , presence: true
+  validates :price           , presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :user           , presence: true
-
 
 end
