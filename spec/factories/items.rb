@@ -13,9 +13,9 @@ FactoryBot.define do
     prefecture_id            {'1'}
     scheduled_delivery_id       {'1'}
     price                      {'9999999'}
-    user_id                 {'1'}
     association :user
-    image               {Faker::Lorem.sentence}
-
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end

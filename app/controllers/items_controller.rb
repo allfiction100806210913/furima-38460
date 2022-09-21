@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index]
-  
+
   def index
   end
 
@@ -29,16 +29,4 @@ class ItemsController < ApplicationController
       redirect_to '/users/sign_in'
     end
   end
-  
-  #prototype_id: params[:prototype_id]
-
-
-      #validates :item_text           , presence: true
-      #validates :item_category_id           , presence: true
-    #validates :item_status_id           , presence: true
-    #validates :shipping_status_id           , presence: true
-    #validates :item_prefecture_id           , presence: true
-    #validates :item_scheduled_delivery_id           , presence: true
-    #validates :price           , presence: true
-    #validates :user           , presence: true
 end
