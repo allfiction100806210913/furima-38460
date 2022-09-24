@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  
+  before_action :move_to_signed_in, except: [:index, :show]
 
   def index
     @items = Item.order("created_at DESC")
@@ -23,6 +23,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+  end
+
+
 
   private
 
@@ -32,5 +36,9 @@ class ItemsController < ApplicationController
 
 
 
- 
+  def move_to_signed_in
+    unless user_signed_in?
+      redirect_to '/users/sign_in'
+    end
+  end
 end
