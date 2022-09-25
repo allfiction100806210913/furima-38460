@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
-  before_action :carent_user, except:[:index, :show]
+  before_action :carent_user, only:[:edit]
   before_action :set_item, except: [:index, :new, :create]
 
   def index
