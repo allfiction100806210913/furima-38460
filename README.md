@@ -54,7 +54,7 @@
 | building                | string   |           |
 | addresses               | string   | null: false |
 | phone_number            | string   | null: false |
-| purchase_record     | null: false, foreign_key: true | null: false |
+| purchase_record      | references | null: false, foreign_key: true | null: false |
 
 
 ### Association
