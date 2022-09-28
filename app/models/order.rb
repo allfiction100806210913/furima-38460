@@ -8,7 +8,6 @@ class Order < ApplicationRecord
   #validates :purchase_record, presence: true
   #validates :token, presence: true
   belongs_to :purchase_record
-  belongs_to_active_hash :prefecture
   attr_accessor :token
 
 end
