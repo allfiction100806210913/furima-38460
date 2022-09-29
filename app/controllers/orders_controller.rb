@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
        @order_purchase_record.save
       return redirect_to root_path
     else
-      redirect_to item_orders_path
+      render :index
     end
   end
 
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
 
   def purchasing_and_login_restrictions
     unless user_signed_in?
-      '/users/sign_in'
+      redirect_to root_path
     end
   end
 
@@ -50,9 +50,9 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
-    else
     end
   end
+
 
   def detail_screen_migration_restrictions
     @item = Item.find(params[:item_id])

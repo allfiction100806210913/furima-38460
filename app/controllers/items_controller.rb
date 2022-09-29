@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
-  before_action :carent_user, only:[:edit]
   before_action :set_item, except: [:index, :new, :create]
+  before_action :item_detail_migration_restrictions, only: [:edit]
 
   def index
     @items = Item.order("created_at DESC")
@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.order("created_at DESC")
   end
 
   def edit
@@ -57,14 +58,22 @@ class ItemsController < ApplicationController
     end
   end
 
-  def carent_user
-    @item = Item.find(params[:id])
-    unless user_signed_in? && current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
   
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def item_detail_migration_restrictions
+    @item = Item.find(params[:id])
+    if user_signed_in? && current_user.id == @item.user_id
+      if PurchaseRecord.exists?(item_id: @item.id)
+         redirect_to root_path
+      else
+      end
+    else
+    redirect_to root_path
+    end
+  end
+
+
 end
