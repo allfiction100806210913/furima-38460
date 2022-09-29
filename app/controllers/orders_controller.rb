@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :purchasing_and_login_restrictions, only:[:index]
+  before_action :seller_cannot_buy, only:[:index]
+  before_action :detail_screen_migration_restrictions, only:[:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -34,4 +37,27 @@ class OrdersController < ApplicationController
       )
   end
 
+
+
+
+  def purchasing_and_login_restrictions
+    unless user_signed_in?
+      '/users/sign_in'
+    end
+  end
+
+  def seller_cannot_buy
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    else
+    end
+  end
+
+  def detail_screen_migration_restrictions
+    @item = Item.find(params[:item_id])
+    if PurchaseRecord.exists?(item_id: @item.id)
+    redirect_to root_path
+    end
+  end
 end
