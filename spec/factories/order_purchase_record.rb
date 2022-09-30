@@ -12,8 +12,7 @@ FactoryBot.define do
     phone_number              {'09012345678'}
     prefecture_id             { 20 }
     postal_code             {'399-0033'}
-    user_id { FactoryBot.create(:user) }
-    item_id { FactoryBot.create(:item) }
+
   end
 end
 

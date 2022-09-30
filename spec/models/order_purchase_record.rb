@@ -2,7 +2,10 @@ require 'rails_helper'
 
  RSpec.describe OrderPurchaseRecord, type: :model do
    before do
-    @order_purchase_record = FactoryBot.build(:order_purchase_record)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_purchase_record = FactoryBot.build(:order_purchase_record, user_id: user.id, item_id: item.id)
+
    end
 
    describe '商品購入機能' do
@@ -64,9 +67,6 @@ require 'rails_helper'
       @order_purchase_record.valid?
       expect(@order_purchase_record.errors.full_messages).to include("Phone number is invalid")
      end
-
-
-
     end
   end
 end
