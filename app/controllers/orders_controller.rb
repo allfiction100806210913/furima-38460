@@ -2,15 +2,14 @@ class OrdersController < ApplicationController
   before_action :purchasing_and_login_restrictions, only:[:index]
   before_action :seller_cannot_buy, only:[:index]
   before_action :detail_screen_migration_restrictions, only:[:index]
+  before_action :order_set_item, only:[:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order_purchase_record = OrderPurchaseRecord.new
   end
 
 
   def create
-       @item = Item.find(params[:item_id])
        @order_purchase_record = OrderPurchaseRecord.new(order_params)
     if @order_purchase_record.valid?
        pay_item
@@ -37,7 +36,9 @@ class OrdersController < ApplicationController
       )
   end
 
-
+  def order_set_item
+    @item = Item.find(params[:id])
+  end
 
 
   def purchasing_and_login_restrictions

@@ -5,13 +5,15 @@ FactoryBot.define do
       person { Gimei.name }
     end
     
+    building{ '' }
+    token{ 'abcdefghi' }
     city             { '長野県松本市' }
     addresses                {'青山1-1-1'}
     phone_number              {'09012345678'}
     prefecture_id             { 20 }
     postal_code             {'399-0033'}
-    user_id             {'3'}
-    item_id             {'3'}
+    user_id { FactoryBot.create(:user) }
+    item_id { FactoryBot.create(:item) }
   end
 end
 

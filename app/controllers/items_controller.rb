@@ -64,7 +64,6 @@ class ItemsController < ApplicationController
   end
 
   def item_detail_migration_restrictions
-    @item = Item.find(params[:id])
     if user_signed_in? && current_user.id == @item.user_id
       if PurchaseRecord.exists?(item_id: @item.id)
          redirect_to root_path
