@@ -23,49 +23,49 @@ require 'rails_helper'
      it 'cityが空では登録できない' do
       @order_purchase_record.city = ''
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("City can't be blank")
+      expect(@order_purchase_record.errors.full_messages).to include("Cityを入力してください")
      end
 
      it 'addressesが空では登録できない' do
       @order_purchase_record.addresses = ''
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Addresses can't be blank")
+      expect(@order_purchase_record.errors.full_messages).to include("Addressesを入力してください")
      end
 
      it 'phone_numberが空では登録できない' do
       @order_purchase_record.phone_number = ''
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Phone number can't be blank")
+      expect(@order_purchase_record.errors.full_messages).to include("Phone numberを入力してください")
      end
 
      it 'prefecture_idが---では登録できない' do
       @order_purchase_record.prefecture_id = 0 
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@order_purchase_record.errors.full_messages).to include("Prefectureは0以外の値にしてください")
      end
 
      it 'postal_codeが空では登録できない' do
       @order_purchase_record.postal_code = ''
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Postal code can't be blank")
+      expect(@order_purchase_record.errors.full_messages).to include("Postal codeを入力してください")
      end
 
      it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能なこと' do
       @order_purchase_record.postal_code = '3990033'
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Postal code is invalid")
+      expect(@order_purchase_record.errors.full_messages).to include("Postal codeは不正な値です")
      end
 
      it '電話番号は、11桁以上の半角数値では保存できないこと' do
       @order_purchase_record.phone_number = '12345678999'
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_purchase_record.errors.full_messages).to include("Phone numberは不正な値です")
      end
 
      it '電話番号は、9桁以下の半角数値では保存できないこと' do
       @order_purchase_record.phone_number = '123456789'
       @order_purchase_record.valid?
-      expect(@order_purchase_record.errors.full_messages).to include("Phone number is invalid")
+      expect(@order_purchase_record.errors.full_messages).to include("Phone numberは不正な値です")
      end
     end
   end
