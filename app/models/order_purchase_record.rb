@@ -10,6 +10,7 @@ class OrderPurchaseRecord
     validates :phone_number, presence: true, format: {with: /\A0[0-9]{9,10}\z/}
     validates :prefecture_id, presence: true, numericality: { other_than: 0 }
     validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
+    validates :token, presence: true
   end
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id )
